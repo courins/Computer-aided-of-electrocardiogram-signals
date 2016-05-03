@@ -3,12 +3,12 @@ clc;
 
 %% loading
 
-l1=load('files/ecg_AF.mat');
-l2=load('files/ecg_VF.mat');
-l3=load('files/ecg_SSS.mat');
-l4=load('files/ecg_PVC.mat');
+l1=load('ecg_AF.mat');
+l2=load('ecg_VF.mat');
+l3=load('ecg_SSS.mat');
+l4=load('ecg_PVC.mat');
 
-%% diplay
+%% display
 figure(1);
 n=2;
 m=2;
