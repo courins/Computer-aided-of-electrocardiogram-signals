@@ -3,10 +3,9 @@ clc;
 
 %% loading
 
-l1=load('ecg_AF.mat');
-l2=load('ecg_VF.mat');
-l3=load('ecg_SSS.mat');
-l4=load('ecg_PVC.mat');
+l1=load('ecg_normal_1.mat');
+l2=load('ecg_normal_2.mat');
+l3=load('ecg_normal_3.mat');
 
 %% display
 figure(1);
@@ -19,7 +18,7 @@ subplot(n,m,1);
 [x,t]=windowECG(l1.ecg,l1.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg AF')
+title('ecg normal 1')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
@@ -27,7 +26,7 @@ subplot(n,m,2);
 [x,t]=windowECG(l2.ecg,l2.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg VF')
+title('ecg normal 2')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
@@ -35,17 +34,11 @@ subplot(n,m,3);
 [x,t]=windowECG(l3.ecg,l3.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg SSS')
+title('ecg normal 3')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
-subplot(n,m,4);
-[x,t]=windowECG(l4.ecg,l4.Fs,tmin,tmax);
-plot(t,x);
-grid on
-title('ecg PVC')
-xlabel('Time(s)')
-ylabel('Voltage(microV)')
+
 %% function window
 figure(2);
 n=4;
@@ -57,7 +50,7 @@ subplot(n,m,1);
 [x,t]=windowECG(l1.ecg,l1.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg AF_window')
+title('ecg normal 1')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
@@ -65,7 +58,7 @@ subplot(n,m,2);
 [x,t]=windowECG(l2.ecg,l2.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg VF window')
+title('ecg normal 2')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
@@ -73,17 +66,11 @@ subplot(n,m,3);
 [x,t]=windowECG(l3.ecg,l3.Fs,tmin,tmax);
 plot(t,x);
 grid on
-title('ecg SSS window')
+title('ecg normal 3')
 xlabel('Time(s)')
 ylabel('Voltage(microV)')
 
-subplot(n,m,4);
-[x,t]=windowECG(l4.ecg,l4.Fs,tmin,tmax);
-plot(t,x);
-grid on
-title('ecg PVC window')
-xlabel('Time(s)')
-ylabel('Voltage(microV)')
+
 
 %% freq display
 figure(3);
@@ -96,7 +83,7 @@ subplot(n,m,1);
 [x,t]=pspectrumECG(x,l1.Fs,nb);
 semilogy(t,x);
 grid on
-title('ecg AF power spectrum')
+title('ecg normal 1 power spectrum')
 xlabel('Frequency (Hz)')
 ylabel('Power/Frequency (dB/Hz)')
 
@@ -105,7 +92,7 @@ subplot(n,m,2);
 [x,t]=pspectrumECG(x,l1.Fs,nb);
 semilogy(t,x);
 grid on
-title('ecg AF power spectrum')
+title('ecg normal 2 power spectrum')
 xlabel('Frequency (Hz)')
 ylabel('Power/Frequency (dB/Hz)')
 
@@ -114,16 +101,7 @@ subplot(n,m,3);
 [x,t]=pspectrumECG(x,l1.Fs,nb);
 semilogy(t,x);
 grid on
-title('ecg AF power spectrum')
-xlabel('Frequency (Hz)')
-ylabel('Power/Frequency (dB/Hz)')
-
-subplot(n,m,4);
-[x,t1]=windowECG(l4.ecg,l4.Fs,tmin,tmax);
-[x,t]=pspectrumECG(x,l1.Fs,nb);
-semilogy(t,x);
-grid on
-title('ecg AF power spectrum')
+title('ecg normal 3 power spectrum')
 xlabel('Frequency (Hz)')
 ylabel('Power/Frequency (dB/Hz)')
 

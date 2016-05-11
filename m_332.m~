@@ -1,0 +1,43 @@
+clear all;
+close all; 
+clc;
+
+%Load signals
+load('ecg_AF.mat');
+fs1 = Fs;
+ecg1 = ecg;
+
+load('ecg_VF.mat');
+fs2 = Fs;
+ecg2 = ecg;
+
+load('ecg_SSS.mat');
+fs3 = Fs;
+ecg3 = ecg;
+
+load('ecg_PVC.mat');
+fs4 = Fs;
+ecg4 = ecg;
+
+%matrix construction
+
+Fs=fs1;
+N=2;
+Ne = N*Fs;
+x = ecg1;
+r=floor(length(ecg1)/Ne);
+z = reshape(x, r, []);
+size_t=length(z(1,:));
+size_fft=length(z);
+y=zeros(size_fft,size_t);
+
+for i=1:size_t
+    y(:,i) = fftshift((abs(fft(z(:,i)))).^2);
+end
+
+
+time_axis=1:si*(1/Fs));
+freq_axis=1:(1/Fs):250;
+imagesc(time_axis,freq_axis,log10(y));
+
+
