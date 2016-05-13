@@ -3,35 +3,50 @@ close all;
 clc;
 
 %Load signals
-load('ecg_AF.mat');
+load('ecg_normal_1.mat');
 fs1 = Fs;
 ecg1 = ecg;
 
-load('ecg_VF.mat');
+load('ecg_normal_2.mat');
 fs2 = Fs;
 ecg2 = ecg;
 
-load('ecg_SSS.mat');
+load('ecg_normal_3.mat');
+
 fs3 = Fs;
 ecg3 = ecg;
 
-load('ecg_PVC.mat');
-fs4 = Fs;
-ecg4 = ecg;
 
+
+%% First ECG of normal patient
 %matrix construction
-%[spec] = spectrogramme(ecg1, 1, 0, fs1)
+[fft1, t_axis1, f_axis1] = spectrogramme(ecg1(1:10000), fs1, 8, 0.8);
 
-ecg=ecg1;
-Fs=fs1;
-N=0.2;
-Ne = length(ecg(1:N*Fs));
-mv = floor(length(ecg)/Ne) + 1;
-spec = zeros(mv , Ne+1);
+figure;
+imagesc(t_axis1, f_axis1*60, fft1);
+ylim([0 250]);
+title('Spectrogram ECG Normal 1');
+xlabel('time (s)');
+ylabel('bpm');
 
-test=fftshift(abs(fft(ecg((1-1)*Ne + 1:1*Ne + 1))).^2);
+%% Second ECG of normal patient
+%matrix construction
+[fft2, t_axis2, f_axis2] = spectrogramme(ecg2(1:10000), fs2, 8, 0.8);
 
-for i=1:(mv-2)
-    spec(i,:) = fftshift(abs(fft(ecg((i-1)*Ne + 1:i*Ne + 1))).^2);
-end
+figure;
+imagesc(t_axis2, f_axis2*60, fft2);
+ylim([0 250]);
+title('Spectrogram ECG Normal 2');
+xlabel('time (s)');
+ylabel('bpm');
 
+%% Third ECG of normal patient
+%matrix construction
+[fft3, t_axis3, f_axis3] = spectrogramme(ecg3(1:10000), fs3, 8, 0.8);
+
+figure;
+imagesc(t_axis3, f_axis3*60, fft3);
+ylim([0 250]);
+title('Spectrogram ECG Normal 3');
+xlabel('time (s)');
+ylabel('bpm');

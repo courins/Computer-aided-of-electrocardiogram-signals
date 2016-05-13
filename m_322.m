@@ -21,7 +21,7 @@ ecg4 = ecg;
 
 %Constant
 tmin = 1;
-tmax = 11;
+tmax = 6;
 
 
 %ECG power spectrum computation
@@ -43,30 +43,31 @@ figure;
 semilogy(f_w1*60,psp1);
 xlim([0, 150]);
 grid on;
-title('power spectrum normal 1')
-xlabel('Beats per minutes (bpm)')
+title('AF freq spectrum')
+xlabel('Cardiac Rythm (bpm)')
 ylabel('Power (dB)')
 
 figure;
 semilogy(f_w2*60,psp2);
+grid on;
 xlim([0, 150]);
 grid on;
-title('power spectrum normal 2')
-xlabel('Beats per minutes (bpm)')
-ylabel('Power (dB)')
+title('VF freq spectrum')
+xlabel('Cardiac Rythm (bpm)')
+ylabel('Amplitude (dB)')
 
 figure;
 semilogy(f_w3*60,psp3);
 xlim([0, 150]);
 grid on;
-title('power spectrum normal 3')
-xlabel('Beats per minutes (bpm)')
-ylabel('Power (dB)')
+title('SSS freq spectrum')
+xlabel('Cardiac Rythm (bpm)')
+ylabel('Amplitude (dB)')
 
 figure;
 semilogy(f_w4*60,psp4);
 xlim([0, 150]);
 grid on;
-title('power spectrum normal 4')
+title('PVC freq spectrum')
 xlabel('Beats per minutes (bpm)')
-ylabel('Power (dB)')
+ylabel('Amplitude (dB)')
