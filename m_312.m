@@ -22,7 +22,7 @@ plot(t,x);
 grid on
 title('ecg AF')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 subplot(n,m,2);
 [x,t]=windowECG(l2.ecg,l2.Fs,tmin,tmax);
@@ -30,7 +30,7 @@ plot(t,x);
 grid on
 title('ecg VF')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 subplot(n,m,3);
 [x,t]=windowECG(l3.ecg,l3.Fs,tmin,tmax);
@@ -38,7 +38,7 @@ plot(t,x);
 grid on
 title('ecg SSS')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 subplot(n,m,4);
 [x,t]=windowECG(l4.ecg,l4.Fs,tmin,tmax);
@@ -46,5 +46,5 @@ plot(t,x);
 grid on
 title('ecg PVC')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 

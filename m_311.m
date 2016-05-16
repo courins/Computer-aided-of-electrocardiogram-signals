@@ -21,7 +21,7 @@ plot(t,x);
 grid on
 title('ecg normal 1')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 subplot(n,m,2);
 [x,t]=windowECG(l2.ecg,l2.Fs,tmin,tmax);
@@ -29,7 +29,7 @@ plot(t,x);
 grid on
 title('ecg normal 2')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 subplot(n,m,3);
 [x,t]=windowECG(l3.ecg,l3.Fs,tmin,tmax);
@@ -37,6 +37,6 @@ plot(t,x);
 grid on
 title('ecg normal 3')
 xlabel('Time(s)')
-ylabel('Voltage(microV)')
+ylabel('Voltage(mV)')
 
 

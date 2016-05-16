@@ -1,7 +1,7 @@
-function [time_occurs, R_peak_values] = find_R_peaks(ecg, Fs, threshold, tmin)
+function [time_occurs, min_values] = find_local_min(ecg, Fs, threshold, tmin)
 
 %Input :
-%Find R peaks for a given ecg
+%find local minimas for a given ecg
 %Threshold defines if it is wether or not you consider the peak as an R
 %peak.
 %Fs : frequency of sampling
@@ -10,10 +10,10 @@ function [time_occurs, R_peak_values] = find_R_peaks(ecg, Fs, threshold, tmin)
 %Output :
 %time_occurs is a vector which contains the time at which the R peaks
 %occur
-%R_peak_values is a vector which contains the values of the different R
-%peaks
+%min_values is a vector which contains the values of the different local
+%minima
 
-R_waves = ecg > threshold;
+R_waves = ecg < threshold;
 R_waves = R_waves.*ecg;
 
 wave = zeros(1,10000);
@@ -26,7 +26,7 @@ while i<length(ecg)
             wave(j) = R_waves(i+(j-1));
             j = j + 1; 
         end
-        [R_peak_values(k), time_occurs(k)] = max(wave); % max(ecg([i:j]))
+        [min_values(k), time_occurs(k)] = min(wave); % max(ecg([i:j]))
         time_occurs(k) = time_occurs(k) + i;
         wave = zeros(1,10000);
         k = k + 1;
