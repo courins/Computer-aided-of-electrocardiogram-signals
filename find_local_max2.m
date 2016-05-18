@@ -1,4 +1,4 @@
-function [time_occurs, max_values] = find_local_max(ecg, Fs, threshold, tmin)
+function [time_occurs, max_values] = find_local_max2(ecg, Fs, threshold, tmin)
 
 %Input :
 %Find R peaks for a given ecg
@@ -24,10 +24,10 @@ while i<length(ecg)
         j = 1;
         while R_waves(i+(j-1)) ~= 0 && (i+(j-1)) < length(ecg)
             wave(j) = R_waves(i+(j-1));
-            j = j + 1;
+            j = j + 1; 
         end
         [max_values(k), time_occurs(k)] = max(wave); % max(ecg([i:j]))
-        time_occurs(k) = time_occurs(k) + i-1;
+        time_occurs(k) = time_occurs(k) + i;
         wave = zeros(1,10000);
         k = k + 1;
         
@@ -37,6 +37,6 @@ while i<length(ecg)
     
 end
 
-time_occurs = tmin + time_occurs.*(1/Fs) - 2*(1/Fs);
+time_occurs = tmin + time_occurs.*(1/Fs);
 
 end

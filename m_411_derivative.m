@@ -43,7 +43,7 @@ for i=1:16
 end
 
 mean_R_peak = (mean_R_peak(find(mean_R_peak)));
-threshold1 = mean(mean_R_peak)/1.5;
+threshold1 = mean(mean_R_peak)/2.5;
 
 
 %ECG normal 2 : determine a threshold
@@ -57,7 +57,7 @@ for i=1:16
 end
 
 mean_R_peak = (mean_R_peak(find(mean_R_peak)));
-threshold2 = mean(mean_R_peak)/1.5;
+threshold2 = mean(mean_R_peak)/2.5;
 
 
 %ECG normal 3 : determine a threshold
@@ -71,7 +71,7 @@ for i=1:16
 end
 
 mean_R_peak = (mean_R_peak(find(mean_R_peak)));
-threshold3 = mean(mean_R_peak)/1.5;
+threshold3 = mean(mean_R_peak)/2.5;
 
 
 %determine local minimas
@@ -88,25 +88,40 @@ threshold3 = mean(mean_R_peak)/1.5;
 
 %determine the time when the R peak occurs
 
-[zero_occurs1] = find_zero(ecg1_4sec, fs1, t_min1, t_max1, tmin);
-[zero_occurs2] = find_zero(ecg2_4sec, fs2, t_min2, t_max2, tmin); 
-[zero_occurs3] = find_zero(ecg3_4sec, fs3, t_min3, t_max3, tmin); 
+[zero_occurs1] = find_zero(ecg1_4sec, ecg1, fs1, t_min1, t_max1, tmin);
+[zero_occurs2] = find_zero(ecg2_4sec, ecg2, fs2, t_min2, t_max2, tmin); 
+[zero_occurs3] = find_zero(ecg3_4sec, ecg3, fs3, t_min3, t_max3, tmin); 
 
 % Plot ECG with the R peaks in red
 figure
 plot(t_axis1, ecg1(tmin*fs1:tmax*fs1-1));
+hold on
+plot(zero_occurs1, ecg1(floor([zero_occurs1].*fs1)), 'or')
+plot(t_min1, ecg1(floor([t_min1].*fs1)), 'og')
+plot(t_max1, ecg1(floor([t_max1].*fs1)), 'og')
+hold off
 title('ECG Normal 1');
 xlabel('time (s)');
 ylabel('Voltage (mV)');
 
 figure
-plot(t_axis2, ecg1(tmin*fs2:tmax*fs2-1));
+plot(t_axis2, ecg2(tmin*fs2:tmax*fs2-1));
+hold on
+plot(zero_occurs2, ecg2(floor([zero_occurs2].*fs1)), 'or')
+plot(t_min2, ecg1(floor([t_min2].*fs1)), 'og')
+plot(t_max2, ecg1(floor([t_max2].*fs1)), 'og')
+hold off
 title('ECG Normal 2');
 xlabel('time (s)');
 ylabel('Voltage (mV)');
 
 figure
-plot(t_axis3, ecg1(tmin*fs3:tmax*fs3-1));
+plot(t_axis3, ecg3(tmin*fs3:tmax*fs3-1));
+hold on
+plot(zero_occurs3, ecg3(floor([zero_occurs3].*fs1)), 'or')
+plot(t_min3, ecg1(floor([t_min3].*fs1)), 'og')
+plot(t_max3, ecg1(floor([t_max3].*fs1)), 'og')
+hold off
 title('ECG Normal 3');
 xlabel('time (s)');
 ylabel('Voltage (mV)');
