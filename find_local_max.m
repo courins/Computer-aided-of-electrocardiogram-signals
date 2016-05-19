@@ -1,4 +1,4 @@
-function [time_occurs, max_values] = find_local_max(ecg, Fs, threshold, tmin)
+function [time_occurs, max_values] = find_local_max(ecg, threshold)
 
 %Input :
 %Find R peaks for a given ecg
@@ -36,7 +36,4 @@ while i<length(ecg)
     i = i + 1;
     
 end
-
-time_occurs = tmin + time_occurs.*(1/Fs) - 2*(1/Fs);
-
 end

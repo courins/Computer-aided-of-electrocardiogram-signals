@@ -1,4 +1,4 @@
-function [time_occurs] = find_zero(ecg_diff, ecg, Fs, t_occur_min, t_occur_max, tmin)
+function [time_occurs] = find_zero(ecg_diff, t_occur_min, t_occur_max)
 
 %Input :
 % ecg : derivation of ecg
@@ -11,19 +11,22 @@ function [time_occurs] = find_zero(ecg_diff, ecg, Fs, t_occur_min, t_occur_max, 
 % time_occurs : time when the R peak occurs
 
 k = 1;
-
-for i=1:min(length(t_occur_max),length(t_occur_min))
-    ecg_tmp = ecg_diff(floor((t_occur_max(i)-tmin)*Fs) :floor((t_occur_min(i)-tmin)*Fs));
-    zero = ecg_tmp(1);
-    for j=1:length(ecg_tmp)
-        if abs(ecg_tmp(j)) < abs(zero)
-        zero = ecg_tmp(j);
-        zero_occur = j-1;
+i = 1;
+j = 1;
+time_occurs = zeros(1,20);
+while i<=max(length(t_occur_max),length(t_occur_min))
+    ecg_tmp = ecg_diff(t_occur_max(i):t_occur_min(i));
+    while j <= length(ecg_tmp)
+        if ecg_tmp(j) < 0
+            time_occurs(k) = t_occur_max(i) + (j-1) - 1;
+            k = k + 1;
+            break;
         end
+        j = j + 1;
     end
-    
-    time_occurs(k) = t_occur_max(i) + zero_occur*(1/Fs) - (1/Fs);
-    k = k + 1;
+    i = i + 1;
+end
+time_occurs = time_occurs(find(time_occurs));
 end
 
 

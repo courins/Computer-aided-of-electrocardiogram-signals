@@ -43,13 +43,13 @@ figure
 plot(t_axis, ecg1_4sec);
 title('ECG Normal 1');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Voltage');
 
 figure
 plot(t_axis, fftshift(abs(fft(ecg1_4sec))));
 title('Frequecy Spectrum of ECG Normal');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Amplitude');
 
 ecg1_filtered1 = filter(num1, den1, ecg1_4sec);
 
@@ -57,13 +57,13 @@ figure
 plot(t_axis, ecg1_filtered1);
 title('ECG Normal 1 after filtered by low-pass filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Voltage');
 
 figure
 plot(t_axis, fftshift(abs(fft(ecg1_filtered1))));
 title('Frequecy Spectrum of ECG Normal 1 after filtered by low-pass filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Amplitude');
 
 ecg1_filtered2 = filter(num2, den2, ecg1_filtered1);
 
@@ -71,13 +71,13 @@ figure
 plot(t_axis, ecg1_filtered2);
 title('ECG Normal 1 after filtered by band-pass filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Voltage');
 
 figure
 plot(t_axis, fftshift(abs(fft(ecg1_filtered2))));
 title('Frequecy Spectrum of ECG Normal 1 after filtered by band-pass filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Amplitude');
 
 %% b) differentiation filter
 
@@ -93,13 +93,13 @@ figure
 plot(t_axis, ecg1_filtered3);
 title('ECG Normal 1 after filtered by derivative filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Voltage ');
 
 figure
 plot(t_axis, fftshift(abs(fft(ecg1_filtered3))));
 title('Frequecy Spectrum of ECG Normal 1 after filtered by derivative filter');
 xlabel('time (s)');
-ylabel('Voltage (microV)');
+ylabel('Amplitude');
 
 %% c) Signal squared
 
@@ -109,7 +109,7 @@ figure
 plot(t_axis, ecg1_filtered4);
 title('ECG Normal 1 after being squared');
 xlabel('time (s)');
-ylabel('microV^2');
+ylabel('Voltage');
 
 %% d) Window proposal
 

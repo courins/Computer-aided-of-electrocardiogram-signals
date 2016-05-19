@@ -84,27 +84,27 @@ threshold3 = mean(mean_R_peak)/1.5;
 figure
 plot(t_axis1, nthroot(ecg1_4sec, 3));
 hold on
-stem(t1, nthroot(R1,3), 'r');
+plot(t1, nthroot(R1,3), 'or');
 hold off
 title('ECG Normal 1 with R peaks in red');
 xlabel('time (s)');
-ylabel('Voltage (mV)');
+ylabel('Voltage');
 
 figure
 plot(t_axis2, nthroot(ecg2_4sec, 3));
 hold on
-stem(t2, nthroot(R2,3), 'r');
+plot(t2, nthroot(R2,3), 'or');
 hold off
 title('ECG Normal 2 with R peaks in red');
 xlabel('time (s)');
-ylabel('Voltage (mV)');
+ylabel('Voltage');
 
 figure
 plot(t_axis3, nthroot(ecg3_4sec,3));
 hold on
-stem(t3, nthroot(R3,3), 'r');
+plot(t3, nthroot(R3,3), 'or');
 hold off
 title('ECG Normal 3 with R peaks in red');
 xlabel('time (s)');
-ylabel('Voltage (mV)');
+ylabel('Voltage');
 
