@@ -125,11 +125,11 @@ ylabel('Voltage');
 
 
 %% e) Threshold proposal and temporal determination
+clc;
 
 threshold = 4*10^13; %aproximatively proposed according to the graph of ecg1_filtered4
 
 
-%% f) Maximas' Detection
 
 
 [temporal_locations, max_values] = find_local_max2(ecg1_filtered4, fs1, threshold, tmin);
