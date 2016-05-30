@@ -31,8 +31,6 @@ t_axis1 = tmin:1/fs1:tmax-(1/fs1);
 t_axis2 = tmin:1/fs2:tmax-(1/fs2);
 t_axis3 = tmin:1/fs3:tmax-(1/fs3);
 
-% plot(ecg1_4sec)
-
 % determine a threshold
 %ECG normal 1 : determine a threshold
 mean_R_peak = zeros(1,16);

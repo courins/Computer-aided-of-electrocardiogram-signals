@@ -27,7 +27,7 @@ while i<length(ecg)
             j = j + 1; 
         end
         [R_peak_values(k), time_occurs(k)] = max(wave); % max(ecg([i:j]))
-        time_occurs(k) = time_occurs(k) + i-1;
+        time_occurs(k) = time_occurs(k) + i;
         wave = zeros(1,10000);
         k = k + 1;
         
@@ -37,6 +37,6 @@ while i<length(ecg)
     
 end
 
-time_occurs = tmin + time_occurs.*(1/Fs) - (1/Fs);
+time_occurs = tmin*Fs + time_occurs - 1;
 
 end

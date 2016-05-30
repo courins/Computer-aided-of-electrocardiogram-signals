@@ -79,14 +79,25 @@ threshold3 = mean(mean_R_peak)/1.5;
 [tR2, R2] = find_R_peaks(ecg2_4sec, fs2, threshold2, tmin);
 [tR3, R3] = find_R_peaks(ecg3_4sec, fs3, threshold3, tmin);
 
+%Computation of Q peak values and the time at wich they occur.
+[tQ1, Q1] = find_Q_peaks(ecg1_4sec, fs1, tR1, tmin);
+[tQ2, Q2] = find_Q_peaks(ecg2_4sec, fs2, tR2, tmin);
+[tQ3, Q3] = find_Q_peaks(ecg3_4sec, fs3, tR3, tmin);
+
+% Computation of S peak values and the time at wich they occur.
+[tS1, S1] = find_S_peaks(ecg1_4sec, fs1, tR1, tmin);
+[tS2, S2] = find_S_peaks(ecg2_4sec, fs2, tR2, tmin);
+[tS3, S3] = find_S_peaks(ecg3_4sec, fs3, tR3, tmin);
 
 % Plot ECG with the R peaks in red
 figure
 plot(t_axis1, nthroot(ecg1_4sec, 3));
 hold on
 plot(tR1/fs1-tmin/fs1, nthroot(ecg1_4sec(tR1-tmin*fs1), 3), 'or');
+plot(tQ1/fs1-tmin/fs1, nthroot(ecg1_4sec(tQ1-tmin*fs1), 3), 'or');
+plot(tS1/fs1-tmin/fs1, nthroot(ecg1_4sec(tS1-tmin*fs1), 3), 'or');
 hold off
-title('ECG Normal 1 with R peaks in red');
+title('ECG Normal 1 with QRS complex in red');
 xlabel('time (s)');
 ylabel('Voltage');
 
@@ -94,8 +105,10 @@ figure
 plot(t_axis2, nthroot(ecg2_4sec, 3));
 hold on
 plot(tR2/fs2-tmin/fs2, nthroot(ecg2_4sec(tR2-tmin*fs2), 3), 'or');
+plot(tQ2/fs2-tmin/fs2, nthroot(ecg2_4sec(tQ2-tmin*fs2), 3), 'or');
+plot(tS2/fs2-tmin/fs2, nthroot(ecg2_4sec(tS2-tmin*fs2), 3), 'or');
 hold off
-title('ECG Normal 2 with R peaks in red');
+title('ECG Normal 2 with QRS complex in red');
 xlabel('time (s)');
 ylabel('Voltage');
 
@@ -103,8 +116,9 @@ figure
 plot(t_axis3, nthroot(ecg3_4sec,3));
 hold on
 plot(tR3/fs3-tmin/fs3, nthroot(ecg3_4sec(tR3-tmin*fs3), 3), 'or');
+plot(tQ3/fs3-tmin/fs3, nthroot(ecg3_4sec(tQ3-tmin*fs3), 3), 'or');
+plot(tS3/fs3-tmin/fs3, nthroot(ecg3_4sec(tS3-tmin*fs3), 3), 'or');
 hold off
-title('ECG Normal 3 with R peaks in red');
+title('ECG Normal 3 with QRS complex in red');
 xlabel('time (s)');
 ylabel('Voltage');
-

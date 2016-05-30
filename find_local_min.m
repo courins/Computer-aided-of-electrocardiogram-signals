@@ -27,7 +27,7 @@ while i<length(ecg)
             j = j + 1; 
         end
         [min_values(k), time_occurs(k)] = min(wave); % max(ecg([i:j]))
-        time_occurs(k) = time_occurs(k) + i;
+        time_occurs(k) = time_occurs(k) + i-1;
         wave = zeros(1,10000);
         k = k + 1;
         
