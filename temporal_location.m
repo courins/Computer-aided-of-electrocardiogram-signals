@@ -10,7 +10,6 @@ position =[];
 while i<=len
     if ecg(i) >= threshold 
         
-        display('loop');
         point=1;%start by the left point
         position(point,num)= i; %take the position
         point=2;%then the right point
