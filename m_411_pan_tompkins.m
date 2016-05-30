@@ -19,10 +19,12 @@ t_axis = tmin:1/fs1:tmax-(1/fs1);
 load('h1.mat');
 den1 = h1Den;
 num1 = h1Num;
+fvtool(num1,den1,'Fs',200); %display filter's informations
 
 load('h2.mat');
 den2 = h2Den;
 num2 = h2Num;
+fvtool(num2,den2,'Fs',200); %display filter's informations
 
 %% Plot frequency reponse of h1 h2 and its corresponding band-pass
 figure
@@ -35,8 +37,11 @@ freqz(num2, den2, 256, 1024);
 title('high-pass filter frequency response');
 
 figure
-freqz(conv(num1, num2), conv(den1, den2), 256, 1024);
+num3=conv(num1, num2);
+den3=conv(den1, den2);
+freqz(num3, den3, 256, 1024);
 title('resulting band-pass filter frequency response');
+fvtool(num3,den3,'Fs',200) ;%display filter's informations
 
 %% a) ECG filtering
 figure
@@ -85,6 +90,7 @@ b = [1 2 0 -2 -1];
 a = [1];
 a = a*8*(1/fs1);
 freqz(b,a, 256, 1024);
+fvtool(b,a,'Fs',200); %display filter's informations
 title('derivative filter frequency response');
 
 ecg1_filtered3 = filter(b, a, ecg1_filtered2);
@@ -131,18 +137,16 @@ threshold = 1*10^13; %aproximatively proposed according to the graph of ecg1_fil
 
 %% f) Maximas' Detection
 
-list=temporal_location(smwi,threshold);
+list=temporal_location(smwi,threshold); % return a array of samples intervals
+
 delay= 1; 
 
-max_list=pan_tompkins(ecg1_filtered2,list,delay);
+max_list=pan_tompkins(ecg1_filtered2,list,delay); % find the max (r peaks) into the sample intervals
 
 figure();
 plot(ecg1_filtered2);
 hold on
 plot(max_list(1,:),max_list(2,:),'og');
-
-
-
-
-
-
+title('Pan & Tompkins detection');
+xlabel('sample');
+ylabel('Voltage');

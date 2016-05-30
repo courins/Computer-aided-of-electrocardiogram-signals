@@ -1,6 +1,6 @@
 
 function [position]=temporal_location(ecg,threshold)
-
+%return an array of sample intervals
 len = length(ecg);
 i=1;
 point=1; %if point=1 it's the left point of the R peak and if point=2 it's the left
